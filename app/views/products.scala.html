@@ -1,3 +1,4 @@
+@(products: List[models.Product])
 <!-- Pass page title and content {html between braces} to the main view -->
 @main("Products") {
   <!-- HTML content for the index view -->
@@ -21,23 +22,16 @@
           </tr>
           </thead>
           <tbody>
-            <!-- Product row(s) -->
+	 <! -- Start of for loop - for each p in products add a row -->
+         @for (p <- products) { 
             <tr>
-              <td>1</td>
-              <td>Television</td>
-              <td>Sony 42" LCD</td>
-              <td>Audio Visual</td>
-              <td>100</td>
-              <td>720.00</td>
+              <td>class="numeric">@p.getId</td>
+              <td>@p.getName</td>
+              <td>@p.getDescription</td>
+              <td>class="numeric">@p.getStock</td>
+              <td>class="numeric">&euro; @("%.2f".format(p.getPrice))</td>
             </tr>
-            <tr>
-              <td>2</td>
-              <td>Kettle</td>
-              <td>Blue glass 1.8l</td>
-              <td>Kitchen</td>
-              <td>10</td>
-              <td>89.00</td>
-            </tr>
+		} <! -- End of for loop -->
           </tbody>
         </table>
       </div>
